@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+<body>
+    <div style="padding-bottom: 10px ; width: 1030px ; margin-left: auto ; margin-right: auto; margin-top: 120px; background: white; border: 3px solid black; font-family: arial;">
+        <div style="padding-bottom: 20px;padding-top: 20px; width: 1000px; border: 3px solid black; margin: auto; margin-top:10px; text-align: center;">
+            <h1> A - камень | S - ножницы | D - бумага</h1>
+            <span class="result" style="font-size: 50px ; font-family: arial  ; color: green; font-weight: 900; "></span>
+        </div>
+        <div style="display: flex; width: 1030px; margin-top: 10px; ">
+            <div>
+                <h2>Выбор игрока</h2>
+                <div class="pc1" style="width: 500px; margin-left: 5px; height: 500px; border: 3px solid black; background-size:100% 100% ;"></div>
+            </div>
+
+            <div>
+                <h2>Выбор компьютера</h2>
+                <div class="pc2" style="width: 500px; margin-left: 5px; height: 500px; border: 3px solid black; background-size:100% 100% ;"></div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+let variant = ["Камень", "Ножницы", "Бумага"];
+let p1;
+let p2;
+let pic1 = document.querySelector(".pc1");
+let pic2 = document.querySelector(".pc2");
+
+    function getRandomNumber(argument) {
+        let random = Math.random() * 2;
+        let chislo = Math.round(random);
+        return chislo;
+        
+    }
+
+    document.addEventListener('keydown', function(event){
+        if (event.code == "KeyA") {
+            p1= "Камень";
+            p2= variant[getRandomNumber()];
+            console.log(p2);
+            pic1.style.backgroundImage = "url(rock.jpg)"
+            if(p1==p2){
+                pic2.style.backgroundImage = "url(rock.jpg)"
+                document.querySelector(".result").innerHTML= "Ничья";
+            }
+            else if(p2 =="Ножницы"){
+                pic2.style.backgroundImage = "url(scis.jpg)"
+                document.querySelector(".result").innerHTML= "Выиграл игрок";
+            }
+            else if (p2 == "Бумага") {
+                pic2.style.backgroundImage = "url(paper.jpg)"
+                document.querySelector(".result").innerHTML= "Выиграл компьютер";
+            }
+        }
+        if (event.code == "KeyS") {
+            p1= "Ножницы";
+            p2= variant[getRandomNumber()];
+            pic1.style.backgroundImage = "url(scis.jpg)"
+            console.log(p2);
+            if(p1==p2){
+                document.querySelector(".result").innerHTML= "Ничья";
+                pic2.style.backgroundImage = "url(scis.jpg)"
+            }
+            else if(p2 =="Бумага"){
+                document.querySelector(".result").innerHTML= "Выиграл игрок";
+                pic2.style.backgroundImage = "url(paper.jpg)"
+            }
+            else if (p2 == "Камень") {
+                pic2.style.backgroundImage = "url(rock.jpg)"
+                document.querySelector(".result").innerHTML= "Выиграл компьютер";
+            }
+        }
+        if (event.code == "KeyD") {
+            p1= "Бумага";
+            pic1.style.backgroundImage = "url(paper.jpg)"
+            p2= variant[getRandomNumber()];
+            console.log(p2);
+            if(p1==p2){
+                document.querySelector(".result").innerHTML= "Ничья";
+                pic2.style.backgroundImage = "url(paper.jpg)"
+            }
+            else if(p2 =="Камень"){
+                pic2.style.backgroundImage = "url(rock.jpg)"
+                document.querySelector(".result").innerHTML= "Выиграл игрок";
+            }
+            else if (p2 == "Ножницы") {
+                pic2.style.backgroundImage = "url(scis.jpg)"
+                document.querySelector(".result").innerHTML= "Выиграл компьютер";
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>
